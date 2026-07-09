@@ -1,0 +1,43 @@
+// Last updated: 7/9/2026, 9:53:18 AM
+class Solution {
+
+    public int lastRemaining(int n) {
+
+        if(n == 1){
+            return 1;
+        }
+        else if(n<=3)
+        {
+            return 2;
+        }
+
+        int start = 1;
+        int end = n;
+        int gap = 1;
+        int iteration = 1;
+        int size = n;
+
+        while(start < end)
+        {
+
+            if((iteration & 1) == 0)
+            {
+                end -= gap;
+                if((size & 1) != 0)
+                    start += gap;
+            }
+            else
+            {
+                start += gap;
+                if((size & 1) != 0)
+                    end -= gap;
+            }
+
+            gap *= 2;
+            iteration++;
+            size /= 2;
+        }
+
+        return start;
+    }
+}
