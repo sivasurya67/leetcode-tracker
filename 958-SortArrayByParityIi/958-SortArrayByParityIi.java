@@ -1,0 +1,29 @@
+// Last updated: 7/9/2026, 9:51:59 AM
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            nums[i] = nums[i] << 16;
+        }
+
+        int odd = 1;
+        int even = 0;
+
+        for (int i = 0; i < n; i++) {
+            int val = nums[i] >> 16;
+            if ((val & 1) == 1) {
+                nums[odd] |= val;
+                odd += 2;
+            } else {
+                nums[even] |= val;
+                even += 2;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = nums[i] & 0xFFFF;
+        }
+
+        return nums;
+    }
+}
