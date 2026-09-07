@@ -1,0 +1,15 @@
+// Last updated: 9/6/2026, 9:23:43 PM
+class Solution {
+    public boolean check(int[] nums) {
+        int breaks = 0;
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) {
+                breaks++;
+            }
+        }
+
+        return breaks <= 1;
+    }
+}
